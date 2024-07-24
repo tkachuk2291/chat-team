@@ -1,9 +1,6 @@
 from django.db import models
 
-
-class User(models.Model):
-    email = models.EmailField(unique=True)
-    nickname = models.CharField(max_length=100)
+from user_account.models import User
 
 
 class Category(models.Model):

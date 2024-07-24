@@ -1,12 +1,11 @@
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
 
-from chat.views import ChatViewSet
+from user_account.views import UserViewSet
 
 router = DefaultRouter()
-router.register("chat", ChatViewSet, basename="chat"),
-
+router.register("user", UserViewSet, basename="user"),
 
 urlpatterns = [path("", include(router.urls))]
 
-app_name = "chat"
+app_name = "user_account"

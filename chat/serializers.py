@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from chat.models import User
+from chat.models import Chat
 
 
-class UserSerializer(serializers.ModelSerializer):
+class ChatSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ('id', "email", "nickname")
+        model = Chat
+        fields = ('id', "name", "date_created", "category", "users")

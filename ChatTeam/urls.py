@@ -17,10 +17,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('', include("chat.urls"))
+    path('', include("chat.urls")),
+    path('', include("user_account.urls")),
+    path('chat-user/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('chat-user/refresh-token/', TokenRefreshView.as_view(), name='token_refresh')
 ]

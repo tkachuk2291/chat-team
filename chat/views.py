@@ -1,10 +1,10 @@
 from rest_framework import viewsets
 
-from chat.models import User
-from chat.serializers import UserSerializer
+from chat.models import Chat
+from chat.serializers import ChatSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    model = User
-    serializer_class = UserSerializer
+class ChatViewSet(viewsets.ModelViewSet):
+    queryset = Chat.objects.all()
+    model = Chat
+    serializer_class = ChatSerializer
