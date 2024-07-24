@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from chat.models import Chat, Category
+from chat.models import Chat, Category, Message
 from user_account.serializers import UserSerializer
 
 
@@ -30,3 +30,21 @@ class ChatCreateSerializer(serializers.ModelSerializer):
         chat = Chat.objects.create(category=category_data, **validated_data)
         chat.users.set(users_data)
         return chat
+
+
+class MessageChatSerializer(serializers.ModelSerializer):
+    # user = UserSerializer()
+    chat = ChatSerializer()
+
+    class Meta:
+        model = Message
+        fields = ('id', "user", "chat", "text", "date_created")
+
+
+class MessageChatCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ('id', "user", "chat", "text", "date_created")
+
+    def create(self, validated_data):
+        return Message.objects.create(**validated_data)
