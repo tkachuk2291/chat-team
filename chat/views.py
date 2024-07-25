@@ -18,6 +18,13 @@ class ChatViewSet(viewsets.ModelViewSet):
             return ChatCreateSerializer
         return ChatSerializer
 
+    def get_queryset(self):
+        user = self.request.user
+        return Chat.objects.filter(users=user)
+
+    def perform_create(self, serializer):
+        serializer.save(users=[self.request.user])
+
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()

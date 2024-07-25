@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 from chat.models import Chat, Category, Message
@@ -22,29 +23,44 @@ class ChatSerializer(serializers.ModelSerializer):
 class ChatCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chat
-        fields = ('id', "name", "date_created", "category", "users")
+        fields = ('id', "name", "date_created", "category")
 
     def create(self, validated_data):
-        category_data = validated_data.pop('category')
-        users_data = validated_data.pop('users')
-        chat = Chat.objects.create(category=category_data, **validated_data)
-        chat.users.set(users_data)
+        users = validated_data.pop('users', [])
+        chat = Chat.objects.create(**validated_data)
+        chat.users.set(users)  # Use set() for ManyToManyField
         return chat
 
 
+class UserChatMessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+
+        fields = ("id", 'email',)
+
+
+class UserChatSerializer(serializers.ModelSerializer):
+    category = CategorySerializer()
+
+    class Meta:
+        model = Chat
+
+        fields = ('id', "name", "category",)
+
+
 class MessageChatSerializer(serializers.ModelSerializer):
-    # user = UserSerializer()
-    chat = ChatSerializer()
+    user = UserChatMessageSerializer()
+    chat = UserChatSerializer()
 
     class Meta:
         model = Message
-        fields = ('id', "user", "chat", "text", "date_created")
+        fields = ('id', "user", "date_created", "text", "chat")
 
 
 class MessageChatCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
-        fields = ('id', "user", "chat", "text", "date_created")
+        fields = ('id', "chat", "text", "date_created")
 
     def create(self, validated_data):
         return Message.objects.create(**validated_data)
