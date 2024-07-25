@@ -23,9 +23,14 @@ class ChatViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = Chat.objects.all()
         chat_name = self.request.query_params.get("chat_name")
+        chat_id = self.request.query_params.get("chat_id")
         if chat_name:
             queryset = queryset.filter(
                 name__icontains=chat_name
+            )
+        if chat_name:
+            queryset = queryset.filter(
+               id=chat_id
             )
         return queryset.distinct()
 
