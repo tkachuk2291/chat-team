@@ -28,6 +28,7 @@ touch .env
 https://djecrety.ir/ 
 ``` 
 set DJANGO_SECRET_KEY='your_secret_key'
+set DATABASE_URL="secret_key" (if you are developer please contact with me i'll give you a key)
 ```
 
 ```shell
@@ -38,7 +39,7 @@ python manage.py runserver 8002
 ```
 
 ### Local
-http://127.0.0.1:8002/
+http://127.0.0.1:8000/
 
 ### Chat endpoint & JWT Token
 
@@ -47,7 +48,7 @@ http://127.0.0.1:8002/
 "chat": http://127.0.0.1:8000/chat/,  
 "category": http://127.0.0.1:8000/category/,  
 "message":http://127.0.0.1:8000/message/
-user registration: http://127.0.0.1:8000/user/user/
+user registration: http://127.0.0.1:8000/user/
 user login : http://127.0.0.1:8000/user1/login/
 
 **JWT Token**
