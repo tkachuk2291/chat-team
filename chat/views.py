@@ -1,4 +1,3 @@
-from django.contrib.messages.storage.cookie import MessageSerializer
 from rest_framework import viewsets
 
 from chat.models import Chat, Category, Message
@@ -17,6 +16,23 @@ class ChatViewSet(viewsets.ModelViewSet):
         elif self.action == "create":
             return ChatCreateSerializer
         return ChatSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(users=[self.request.user])
+
+    def get_queryset(self):
+        queryset = Chat.objects.all()
+        chat_name = self.request.query_params.get("chat_name")
+        chat_id = self.request.query_params.get("chat_id")
+        if chat_name:
+            queryset = queryset.filter(
+                name__icontains=chat_name
+            )
+        if chat_name:
+            queryset = queryset.filter(
+               id=chat_id
+            )
+        return queryset.distinct()
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
