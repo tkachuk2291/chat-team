@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
 from chat.models import Chat, Category, Message
 from chat.serializers import ChatSerializer, CategorySerializer, ChatCreateSerializer, MessageChatSerializer, \
@@ -9,6 +10,7 @@ class ChatViewSet(viewsets.ModelViewSet):
     queryset = Chat.objects.all()
     model = Chat
     serializer_class = ChatSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -30,18 +32,21 @@ class ChatViewSet(viewsets.ModelViewSet):
             )
         if chat_name:
             queryset = queryset.filter(
-               id=chat_id
+                id=chat_id
             )
         return queryset.distinct()
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Category.objects.all()
     model = Category
     serializer_class = CategorySerializer
 
 
+
 class MessageViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Message.objects.all()
     model = Message
     serializer_class = MessageChatSerializer
