@@ -31,11 +31,22 @@ set DJANGO_SECRET_KEY='your_secret_key'
 set DATABASE_URL="secret_key" (if you are developer please contact with me i'll give you a key)
 ```
 
+
+If use Docker follow commands:
+
+```shell
+docker build -t chat-team . 
+```
+
+```shell
+docker-compose up
+```
+
 ```shell
 python manage.py migrate  
 ```
 ```shell
-python manage.py runserver 8002 
+python manage.py runserver 8001 
 ```
 
 ### Local

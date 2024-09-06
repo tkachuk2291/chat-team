@@ -1,5 +1,5 @@
 services:
-  wine_vault:
+  chat:
     build:
       context: .
     env_file:
