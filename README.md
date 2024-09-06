@@ -50,17 +50,17 @@ python manage.py runserver 8001
 ```
 
 ### Local
-http://127.0.0.1:8000/
+http://127.0.0.1:8001/
 
 ### Chat endpoint & JWT Token
 
 **Chat endpoint**
 
-"chat": http://127.0.0.1:8000/chat/,  
-"category": http://127.0.0.1:8000/category/,  
-"message":http://127.0.0.1:8000/message/
-user registration: http://127.0.0.1:8000/user/
-user login : http://127.0.0.1:8000/user1/login/
+"chat": http://127.0.0.1:8001/chat/,  
+"category": http://127.0.0.1:8001/category/,  
+"message":http://127.0.0.1:8001/message/
+user registration: http://127.0.0.1:8001/user/
+user login : http://127.0.0.1:8001/user1/login/
 
 **JWT Token**
 
