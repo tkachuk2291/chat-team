@@ -136,7 +136,7 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
 }
 
-DATABASES["default"] = dj_database_url.parse(os.getenv("DATABASE_URL"))
+# DATABASES["default"] = dj_database_url.parse(os.getenv("DATABASE_URL"))
 
 
 CORS_ORIGIN_ALLOW_ALL = True
