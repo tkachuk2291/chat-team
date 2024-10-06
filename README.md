@@ -61,6 +61,8 @@ http://127.0.0.1:8001/
 "message":http://127.0.0.1:8001/message/
 user registration: http://127.0.0.1:8001/user/
 user login : http://127.0.0.1:8001/user1/login/
+current user: http://127.0.0.1:8000/user/current_user/
+
 
 **JWT Token**
 
