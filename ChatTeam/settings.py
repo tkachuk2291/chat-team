@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles", "chat", "rest_framework", "rest_framework_simplejwt", "user_account"
+    "django.contrib.staticfiles", "chat", "rest_framework", "rest_framework_simplejwt", "user_account" , "corsheaders"
 ]
 
 MIDDLEWARE = [
@@ -49,6 +49,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware'
 ]
 
 ROOT_URLCONF = "ChatTeam.urls"
@@ -138,5 +140,19 @@ SIMPLE_JWT = {
 
 # DATABASES["default"] = dj_database_url.parse(os.getenv("DATABASE_URL"))
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Ваш фронтенд
+]
+
+
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+]
 
 CORS_ORIGIN_ALLOW_ALL = True
+
